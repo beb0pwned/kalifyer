@@ -38,7 +38,7 @@ snap_tools = [
 ]
 
 raw_wordlists = [
-    "seclists",
+    "SecLists",
     "PayloadsAllTheThings"
 ]
 
