@@ -122,7 +122,7 @@ def main():
                 os.system("exit")
                 
             else:
-                print("{RED}Invalid. Please enter 'Y' or 'N'.{RESET}")
+                print(f"{RED}Invalid. Please enter 'Y' or 'N'.{RESET}")
                 decision = packages()
                 main()
 
