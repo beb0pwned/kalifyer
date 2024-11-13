@@ -51,7 +51,7 @@ def packages():
     Displays the list of tools and wordlists to be installed and asks for user confirmation.
     """
     print("This will install the following packages:")
-    total = 0
+    total = 1
 
     # Print Tools
     for i, tool in enumerate(tools):
@@ -113,11 +113,11 @@ def main():
                 #Install tools
                 for tool in tools:
                     print(f"{GREEN}Installing {tool}{RESET}")
-                    os.system(f'apt install {tool} -y')
+                    os.system(f'apt install {tool}')
                 
                 for tool in snap_tools:
                     print(f"{GREEN}Installing {tool} with snap.{RESET}")
-                    os.system(f'snap install {tool} -y')
+                    os.system(f'snap install {tool}')
                 
                 print(f"{GREEN}Installing Wordlists...{RESET}")
                 
