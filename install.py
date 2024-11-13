@@ -12,7 +12,7 @@ tools = [
     "sqlmap",
     "hydra",
     "hashcat",
-    "john the ripper",
+    "john",
     "bettercap",
 ]
 
