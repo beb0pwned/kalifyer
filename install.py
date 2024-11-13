@@ -41,6 +41,12 @@ snap_tools = [
     'searchsploit',
 ]
 
+web_downloads = [
+    ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", '~/Downloads/burpsuite_community.sh']
+]
+
+
+
 raw_wordlists = [
     "SecLists",
     "PayloadsAllTheThings"
@@ -63,11 +69,15 @@ def packages():
     for i, tool in enumerate(tools):
         print(f"{i+1}) {tool}")
         tool_total += 1
-
     # Print tools that need to be downloaded with snap
     for i, tool in enumerate(snap_tools):
         print(f"{i+1+tool_total}) {tool}")
         tool_total += 1
+    
+    for i, tool in enumerate(web_downloads):
+        print(f"{i + 1 + tool_total}) {tool[0]}")
+        tool_totla += 1
+
 
     print(f"\n{BOLD_GREEN}Wordlists:{RESET}\n")
     #Print Wordlists
@@ -147,6 +157,18 @@ def main():
                     print(f"{GREEN}Installing {tool} with snap.{RESET}")
                     os.system(f'snap install {tool}')
                 
+                # Download and install apps from the web
+                os.system(f'mkdir -p ~/Downloads')
+                for tool in web_downloads:
+                    print(f"Installing {tool[0]}...")
+                    os.system(f'wget {tool[1]} -O {tool[2]}')
+                    if tool[2].endswith(".sh"):
+                        os.system(f"chmod +x {tool[2]}")
+                        os.sytem(f"./{tool[2]}")
+                    else:
+                        print(f"{BOLD_RED}Cannot install file (WILL BE FIXED SOON){RESET}")
+
+
                 #Create directory for wordlists and check for existing wordlists
                 os.system("mkdir -p /opt/wordlists")
                 existing_wordlists = check_directories("/opt/wordlists")
