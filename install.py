@@ -34,7 +34,6 @@ tools = [
 snap_tools = [
     'metasploit-framework',
     'feroxbuster',
-    ''
 ]
 
 raw_wordlists = [
@@ -115,6 +114,10 @@ def main():
                 for tool in tools:
                     print(f"{GREEN}Installing {tool}{RESET}")
                     os.system(f'apt install {tool} -y')
+                
+                for tool in snap_tools:
+                    print(f"{GREEN}Installing {tool} with snap.{RESET}")
+                    os.system(f'snap install {tool} -y')
                 
                 print(f"{GREEN}Installing Wordlists...{RESET}")
                 
