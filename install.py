@@ -57,6 +57,7 @@ def packages():
     print("This will install the following packages:")
     total = 0
 
+    print(f"{GREEN}Tools:{RESET}")
     # Print Tools
     for i, tool in enumerate(tools):
         print(f"{i+1}) {tool}")
@@ -67,6 +68,7 @@ def packages():
         print(f"{i+1+total}) {tool}")
         total += 1
 
+    print(f"{GREEN}Wordlists:{RESET}")
     #Print Wordlists
     for i, wordlist in enumerate(raw_wordlists):
         print(f"{i+1+total}) {wordlist}")
@@ -128,11 +130,11 @@ def main():
             decision = packages()
             if decision == 'y':
                 # Update + Upgrade first
-                print(f"{GREEN}Updating and Upgrading{RESET}")
+                print(f"{GREEN}Updating and Upgrading...{RESET}\n")
                 os.system("apt update -y && apt upgrade -y")
                 os.system("apt full-upgrade -y")
 
-                print(f"{GREEN}Starting installation...{RESET}")
+                print(f"{GREEN}Starting installation...\n{RESET}")
 
                 #Install tools
                 for tool in tools:
@@ -149,7 +151,7 @@ def main():
                 existing_wordlists = check_directories("/opt/wordlists")
 
 
-                print(f"{GREEN}Installing Wordlists...{RESET}")
+                print(f"{GREEN}Installing Wordlists...{RESET}\n")
                 
                 for i, git_link in enumerate(git_wordlists):
                     wordlist_name = raw_wordlists[i].lower()
@@ -164,7 +166,7 @@ def main():
                 # Rename directories to lowercase after cloning
                 lowercase_directories("/opt/wordlists")
 
-                print(f"{GREEN}Done!{RESET}")
+                print(f"\n{GREEN}Done!{RESET}")
                 
             elif decision == 'n':
                 print(f"{RED}Exitting...{RESET}")
