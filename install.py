@@ -81,7 +81,7 @@ def main():
             if decision == 'y':
                 
                 # Update + Upgrade first
-                print(f"Updating and Upgrading")
+                print(f"{GREEN}Updating and Upgrading{RESET}")
                 os.system("apt update -y && apt upgrade -y")
                 os.system("apt full-upgrade -y")
 
