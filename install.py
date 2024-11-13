@@ -30,6 +30,7 @@ tools = [
     "bettercap",
     "ffuf",
     "dirb",
+    "nikto",
 ]
 
 snap_tools = [
