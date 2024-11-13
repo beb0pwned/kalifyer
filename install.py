@@ -161,7 +161,7 @@ def main():
                 # Download and install apps from the web
                 os.system(f'mkdir -p /web_downloads')
                 for tool in web_downloads:
-                    print(f"Installing {tool[0]}...")
+                    print(f"{GREEN}Installing {tool[0]}...{RESET}")
                     os.system(f'wget {tool[1]} -O {tool[2]}')
                     if tool[2].endswith(".sh"):
                         os.system(f"chmod +x {tool[2]}")
