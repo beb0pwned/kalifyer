@@ -6,7 +6,8 @@ RED = "\033[91m"
 TEAL = "\033[96m"
 MAGENTA = "\033[95m"
 RESET = "\033[0m"
-
+BOLD_GREEN = "\033[1;92m]"
+BOLD_RED = "\033[1;91m]"
 
 banner = f"""{RED}
  _ __      _  _  ___               
@@ -54,10 +55,10 @@ def packages():
     """
     Displays the list of tools and wordlists to be installed and asks for user confirmation.
     """
-    print("This will install the following packages:")
+    print("This will install the following packages:\n")
     total = 0
 
-    print(f"{GREEN}Tools:{RESET}")
+    print(f"{BOLD_GREEN}Tools:{RESET}\n")
     # Print Tools
     for i, tool in enumerate(tools):
         print(f"{i+1}) {tool}")
@@ -68,7 +69,7 @@ def packages():
         print(f"{i+1+total}) {tool}")
         total += 1
 
-    print(f"{GREEN}Wordlists:{RESET}")
+    print(f"\n{BOLD_GREEN}Wordlists:{RESET}\n")
     #Print Wordlists
     for i, wordlist in enumerate(raw_wordlists):
         print(f"{i+1+total}) {wordlist}")
@@ -124,7 +125,7 @@ def main():
     try:
         # Check if the script is being run with sudo/root privileges
         if os.getuid() != 0:
-            print("Please use sudo.")
+            print(f"{BOLD_RED}Please use sudo.{RESET}")
         else:
             print(banner)
             decision = packages()
