@@ -6,8 +6,8 @@ RED = "\033[91m"
 TEAL = "\033[96m"
 MAGENTA = "\033[95m"
 RESET = "\033[0m"
-BOLD_GREEN = "\033[1;92m]"
-BOLD_RED = "\033[1;91m]"
+BOLD_GREEN = "\033[1;92m"
+BOLD_RED = "\033[1;91m"
 
 banner = f"""{RED}
  _ __      _  _  ___               
