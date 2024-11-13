@@ -59,8 +59,8 @@ def main():
                 
                 os.system("mkdir /opt/wordlists")
 
-                for wordlist in git_wordlists:
-                    print(f"{GREEN}Installing {raw_wordlists[wordlist]} at /opt/wordlists{RESET}")
+                for i, wordlist in enumerate(git_wordlists):
+                    print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
                     os.system(f"cd /opt/wordlists; {wordlist}")
                 
                 print("Done!")
