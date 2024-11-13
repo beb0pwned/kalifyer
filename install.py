@@ -31,11 +31,13 @@ tools = [
     "ffuf",
     "dirb",
     "nikto",
+    "dnsenum"
 ]
 
 snap_tools = [
     'metasploit-framework',
     'feroxbuster',
+    'searchsploit',
 ]
 
 raw_wordlists = [
