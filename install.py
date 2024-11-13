@@ -4,16 +4,17 @@ import os
 GREEN = "\033[92m"
 RED = "\033[91m"
 TEAL = "\033[96m"
+MAGENTA = "\033[95m"
 RESET = "\033[0m"
 
 
-banner = """
+banner = f"""{MAGENTA}
  _ __      _  _  ___               
 | / / ___ | |<_>| | '_ _  ___  _ _ 
 |  \\ <_> || || || |-| | |/ ._>| '_>
 |_\\_\\<___||_||_||_| `_. |\\___.|_|  
-                    <___'          
-        by beb0pwned
+                    <___'          {RESET}
+        {TEAL}by beb0pwned{RESET}
 """
 
 # Tools and wordlists to be installed
@@ -134,12 +135,13 @@ def main():
                 for tool in tools:
                     print(f"{GREEN}Installing {tool}{RESET}")
                     os.system(f'apt install {tool}')
-                
+
+                # Install snap tools
                 for tool in snap_tools:
                     print(f"{GREEN}Installing {tool} with snap.{RESET}")
                     os.system(f'snap install {tool}')
                 
-                #Create directory for wordlists
+                #Create directory for wordlists and check for existing wordlists
                 os.system("mkdir -p /opt/wordlists")
                 existing_wordlists = check_directories("/opt/wordlists")
 
@@ -148,8 +150,10 @@ def main():
                 
                 for i, git_link in enumerate(git_wordlists):
                     wordlist_name = raw_wordlists[i].lower()
+
                     if wordlist_name in existing_wordlists:
                         print(f"{TEAL}Skipping {raw_wordlists[i]} (already installed).{RESET}")
+
                     else:
                         print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
                         os.system(f"cd /opt/wordlists; git clone {git_link}")
@@ -172,6 +176,8 @@ def main():
     
     except Exception as e:
         print(f"{RED}An error occurred: {e}{RESET}")
+
+
 
 if __name__ == "__main__":
     main()
