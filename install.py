@@ -7,8 +7,6 @@ TEAL = "\033[96m"
 RESET = "\033[0m"
 
 # Check if the script is being run with sudo/root privileges
-if os.getuid() != 0:
-    print("Please use sudo.")
 
 # Tools and wordlists to be installed
 tools = [
@@ -76,45 +74,48 @@ def lowercase_directories(path=''):
 
 def main():
     try:
-        decision = packages()
-        if decision == 'y':
-            
-            # Update + Upgrade first
-            print(f"Updating and Upgrading")
-            os.system("apt update -y && apt upgrade -y")
-            os.system("apt full-upgrade -y")
-
-            print(f"{GREEN}Starting installation...{RESET}")
-
-            #Install tools
-            for tool in tools:
-                print(f"{GREEN}Installing {tool}{RESET}")
-                os.system(f'apt install {tool} -y')
-            
-            print(f"{GREEN}Installing Wordlists...{RESET}")
-            
-            #Create directory for wordlists
-            os.system("mkdir -p /opt/wordlists")
-
-            #Clone wordlists from github 
-            for i, git_link in enumerate(git_wordlists):
-                print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
-                os.system(f"cd /opt/wordlists; {git_link}")
-
-            # Rename cloned directories to lowercase
-            lowercase_directories("/opt/wordlists")    
-
-
-            print(f"{GREEN}Done!{RESET}")
-            
-        elif decision == 'n':
-            print(f"{RED}Exitting...{RESET}")
-            os.system("exit")
-            
+        if os.getuid() != 0:
+            print("Please use sudo.")
         else:
-            print("{RED}Invalid. Please enter 'Y' or 'N'.{RESET}")
             decision = packages()
-            main()
+            if decision == 'y':
+                
+                # Update + Upgrade first
+                print(f"Updating and Upgrading")
+                os.system("apt update -y && apt upgrade -y")
+                os.system("apt full-upgrade -y")
+
+                print(f"{GREEN}Starting installation...{RESET}")
+
+                #Install tools
+                for tool in tools:
+                    print(f"{GREEN}Installing {tool}{RESET}")
+                    os.system(f'apt install {tool} -y')
+                
+                print(f"{GREEN}Installing Wordlists...{RESET}")
+                
+                #Create directory for wordlists
+                os.system("mkdir -p /opt/wordlists")
+
+                #Clone wordlists from github 
+                for i, git_link in enumerate(git_wordlists):
+                    print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
+                    os.system(f"cd /opt/wordlists; {git_link}")
+
+                # Rename cloned directories to lowercase
+                lowercase_directories("/opt/wordlists")    
+
+
+                print(f"{GREEN}Done!{RESET}")
+                
+            elif decision == 'n':
+                print(f"{RED}Exitting...{RESET}")
+                os.system("exit")
+                
+            else:
+                print("{RED}Invalid. Please enter 'Y' or 'N'.{RESET}")
+                decision = packages()
+                main()
 
     except KeyboardInterrupt:
         print(f"\n{RED}Installation interrupted by user.{RESET}")
