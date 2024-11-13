@@ -42,7 +42,7 @@ snap_tools = [
 ]
 
 web_downloads = [
-    ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", '/web_downloads/burpsuite_community.sh']
+    ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'web_downloads/burpsuite_community.sh']
 ]
 
 
@@ -74,7 +74,6 @@ def packages():
         print(f"{i+1+tool_total}) {tool}")
         tool_total += 1
     
-    os.system("mkdir -p ~/Downloads")
     for i, tool in enumerate(web_downloads):
         print(f"{i + 1 + tool_total}) {tool[0]}")
         tool_total += 1
@@ -159,13 +158,12 @@ def main():
                     os.system(f'snap install {tool}')
                 
                 # Download and install apps from the web
-                os.system(f'mkdir -p /web_downloads')
+                os.system(f'mkdir -p web_downloads')
                 for tool in web_downloads:
                     print(f"{GREEN}Installing {tool[0]}...{RESET}")
                     os.system(f'wget {tool[1]} -O {tool[2]}')
                     if tool[2].endswith(".sh"):
                         os.system(f"chmod +x {tool[2]}")
-                        os.system(f"./{tool[2]}")
                     else:
                         print(f"{BOLD_RED}Cannot install file (WILL BE FIXED SOON){RESET}")
 
