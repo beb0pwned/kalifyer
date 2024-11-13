@@ -42,7 +42,7 @@ snap_tools = [
 ]
 
 web_downloads = [
-    ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'web_downloads/burpsuite_community.sh']
+    ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'burpsuite_community.sh']
 ]
 
 
@@ -161,11 +161,8 @@ def main():
                 os.system(f'mkdir -p web_downloads')
                 for tool in web_downloads:
                     print(f"{GREEN}Installing {tool[0]}...{RESET}")
-                    os.system(f'wget {tool[1]} -O {tool[2]}')
-                    if tool[2].endswith(".sh"):
-                        os.system(f"chmod +x {tool[2]}")
-                    else:
-                        print(f"{BOLD_RED}Cannot install file (WILL BE FIXED SOON){RESET}")
+                    os.system(f'wget {tool[1]} -O web_downloads/{tool[2]}')
+                   
 
 
                 #Create directory for wordlists and check for existing wordlists
