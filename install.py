@@ -28,6 +28,13 @@ tools = [
     "john",
     "bettercap",
     "ffuf",
+    "dirb",
+]
+
+snap_tools = [
+    'metasploit-framework',
+    'feroxbuster',
+    ''
 ]
 
 raw_wordlists = [
@@ -50,6 +57,11 @@ def packages():
     # Print Tools
     for i, tool in enumerate(tools):
         print(f"{i}) {tool}")
+        total += 1
+
+    # Print tools that need to be downloaded with snap
+    for i, tool in enumerate(snap_tools):
+        print(f"{i+total}) {tool}")
         total += 1
 
     #Print Wordlists
