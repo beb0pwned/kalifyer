@@ -74,6 +74,7 @@ def packages():
         print(f"{i+1+tool_total}) {tool}")
         tool_total += 1
     
+    os.system("mkdir -p ~/Downloads")
     for i, tool in enumerate(web_downloads):
         print(f"{i + 1 + tool_total}) {tool[0]}")
         tool_total += 1
@@ -164,7 +165,7 @@ def main():
                     os.system(f'wget {tool[1]} -O {tool[2]}')
                     if tool[2].endswith(".sh"):
                         os.system(f"chmod +x {tool[2]}")
-                        os.sytem(f"./{tool[2]}")
+                        os.system(f"./{tool[2]}")
                     else:
                         print(f"{BOLD_RED}Cannot install file (WILL BE FIXED SOON){RESET}")
 
