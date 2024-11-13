@@ -1,4 +1,4 @@
-# Kali Tools Auto Installer
+# Kalifyer
 ## Installation 
 `cd kali_auto_installer`
 `python3 install.py`
