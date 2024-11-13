@@ -6,7 +6,17 @@ RED = "\033[91m"
 TEAL = "\033[96m"
 RESET = "\033[0m"
 
-# Check if the script is being run with sudo/root privileges
+
+banner= """
+ ▄▀▀▄ █  ▄▀▀█▄   ▄▀▀▀▀▄     ▄▀▀█▀▄    ▄▀▀▀█▄    ▄▀▀▄ ▀▀▄  ▄▀▀█▄▄▄▄  ▄▀▀▄▀▀▀▄ 
+█  █ ▄▀ ▐ ▄▀ ▀▄ █    █     █   █  █  █  ▄▀  ▀▄ █   ▀▄ ▄▀ ▐  ▄▀   ▐ █   █   █ 
+▐  █▀▄    █▄▄▄█ ▐    █     ▐   █  ▐  ▐ █▄▄▄▄   ▐     █     █▄▄▄▄▄  ▐  █▀▀█▀  
+  █   █  ▄▀   █     █          █      █    ▐         █     █    ▌   ▄▀    █  
+▄▀   █  █   ▄▀    ▄▀▄▄▄▄▄▄▀ ▄▀▀▀▀▀▄   █            ▄▀     ▄▀▄▄▄▄   █     █   
+█    ▐  ▐   ▐     █        █       █ █             █      █    ▐   ▐     ▐   
+▐                 ▐        ▐       ▐ ▐             ▐      ▐                     
+        by beb0pwned
+"""
 
 # Tools and wordlists to be installed
 tools = [
@@ -74,12 +84,13 @@ def lowercase_directories(path=''):
 
 def main():
     try:
+        # Check if the script is being run with sudo/root privileges
         if os.getuid() != 0:
             print("Please use sudo.")
         else:
+            print(banner)
             decision = packages()
             if decision == 'y':
-                
                 # Update + Upgrade first
                 print(f"{GREEN}Updating and Upgrading{RESET}")
                 os.system("apt update -y && apt upgrade -y")
