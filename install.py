@@ -161,7 +161,7 @@ def main():
                 os.system(f'mkdir -p web_downloads')
                 for tool in web_downloads:
                     print(f"{GREEN}Installing {tool[0]}...{RESET}")
-                    os.system(f'wget {tool[1]} -O web_downloads/{tool[2]}')
+                    os.system(f'wget {tool[1]} >> web_downloads/{tool[2]}')
                    
 
 
