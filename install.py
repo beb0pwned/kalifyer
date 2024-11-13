@@ -78,7 +78,13 @@ def main():
     try:
         decision = packages()
         if decision == 'y':
-            print(F"{GREEN}Starting installation...{RESET}")
+            
+            # Update + Upgrade first
+            print(f"Updating and Upgrading")
+            os.system("apt update -y && apt upgrade -y")
+            os.system("apt full-upgrade -y")
+
+            print(f"{GREEN}Starting installation...{RESET}")
 
             #Install tools
             for tool in tools:
@@ -89,6 +95,7 @@ def main():
             
             #Create directory for wordlists
             os.system("mkdir -p /opt/wordlists")
+
             #Clone wordlists from github 
             for i, git_link in enumerate(git_wordlists):
                 print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
