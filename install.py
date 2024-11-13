@@ -66,7 +66,7 @@ def packages():
 
     # Print tools that need to be downloaded with snap
     for i, tool in enumerate(snap_tools):
-        print(f"{i+1+total}) {tool}")
+        print(f"{i+1+tool_total}) {tool}")
         tool_total += 1
 
     print(f"\n{BOLD_GREEN}Wordlists:{RESET}\n")
