@@ -56,23 +56,23 @@ def packages():
     Displays the list of tools and wordlists to be installed and asks for user confirmation.
     """
     print("This will install the following packages:\n")
-    total = 0
+    tool_total = 0
 
     print(f"{BOLD_GREEN}Tools:{RESET}\n")
     # Print Tools
     for i, tool in enumerate(tools):
         print(f"{i+1}) {tool}")
-        total += 1
+        tool_total += 1
 
     # Print tools that need to be downloaded with snap
     for i, tool in enumerate(snap_tools):
         print(f"{i+1+total}) {tool}")
-        total += 1
+        tool_total += 1
 
     print(f"\n{BOLD_GREEN}Wordlists:{RESET}\n")
     #Print Wordlists
     for i, wordlist in enumerate(raw_wordlists):
-        print(f"{i+1+total}) {wordlist}")
+        print(f"{i+1}) {wordlist}")
     
     print("")
     choice = input("Do you want to continue? Y/N: ").lower()
