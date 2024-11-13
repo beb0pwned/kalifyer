@@ -1,11 +1,15 @@
 import os
 
+# Define colors for output
 GREEN = "\033[92m"
+RED = "\033[91m"
 RESET = "\033[0m"
 
+# Check if the script is being run with sudo/root privileges
 if os.getuid() != 0:
     print("Please use sudo.")
 
+# Tools and wordlists to be installed
 tools = [
     "nmap",
     "aircrack-ng",
@@ -27,6 +31,9 @@ git_wordlists = [
              ]
 
 def packages():
+    """
+    Displays the list of tools and wordlists to be installed and asks for user confirmation.
+    """
     print("This will install the following packages:")
     total = 0
 
@@ -44,39 +51,68 @@ def packages():
 
     return choice
 
+def lowercase_directories(path=''):
+    """
+    Iterates through the names of directories in the specified path and changes them to lowercase.
+    """
+    try:
+        for item in os.listdir(path):
+            full_path = os.path.join(path, item)
+
+            # Check if the item is a directory
+            if os.path.isdir(full_path):
+                # Convert the directory name to lowercase
+                new_name = item.lower()
+
+                # Rename the directory if the name is different
+                if item != new_name:
+                    new_full_path = os.path.join(path, new_name)
+                    os.rename(full_path, new_full_path)
+                    print(f"Rename: {item} -> {new_name}")
+    
+    except Exception as e:
+        print(f"Error: {e}")
+
 def main():
     try:
         decision = packages()
-        loop = True
-        while loop == True:
-            if decision == 'y':
-                print(F"{GREEN}Starting installation...{RESET}")
-                for tool in tools:
-                    print(f"{GREEN}Installing {tool}{RESET}")
-                    os.system(f'apt install {tool} -y')
-                
-                print(f"{GREEN}Installing Wordlists...{RESET}")
-                
-                os.system("mkdir /opt/wordlists")
+        if decision == 'y':
+            print(F"{GREEN}Starting installation...{RESET}")
 
-                for i, wordlist in enumerate(git_wordlists):
-                    print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
-                    os.system(f"cd /opt/wordlists; {wordlist}")
-                
-                print("Done!")
-                loop = False
+            #Install tools
+            for tool in tools:
+                print(f"{GREEN}Installing {tool}{RESET}")
+                os.system(f'apt install {tool} -y')
+            
+            print(f"{GREEN}Installing Wordlists...{RESET}")
+            
+            #Create directory for wordlists
+            os.system("mkdir -p /opt/wordlists")
+            #Clone wordlists from github 
+            for i, git_link in enumerate(git_wordlists):
+                print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
+                os.system(f"cd /opt/wordlists; {git_link}")
+
+            # Rename cloned directories to lowercase
+            lowercase_directories("/opt/wordlists")    
 
 
-            elif decision == 'n':
-                print("Exitting...")
-                os.system("exit")
-                loop = False
-            else:
-                print("Please enter a valid character.")
-                decision = packages()
-                loop = True
-    except:
-        pass
+            print(f"{GREEN}Done!{RESET}")
+            
+        elif decision == 'n':
+            print("Exitting...")
+            os.system("exit")
+            
+        else:
+            print("Invalid. Please enter 'Y' or 'N'.")
+            decision = packages()
+            main()
 
-if __name__ == main():
+    except KeyboardInterrupt:
+        print(f"\n{RED}Installation interrupted by user.{RESET}")
+    
+    except Exception as e:
+        print(f"{RED}An error occurred: {e}{RESET}")
+
+if __name__ == "__main__":
     main()
