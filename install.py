@@ -123,7 +123,6 @@ def main():
                 
             else:
                 print(f"{RED}Invalid. Please enter 'Y' or 'N'.{RESET}")
-                decision = packages()
                 main()
 
     except KeyboardInterrupt:
