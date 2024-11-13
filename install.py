@@ -72,6 +72,26 @@ def packages():
 
     return choice
 
+
+def check_directories(path='/opt/wordlists'):
+    """
+    Iterates through the names of directories in the specified path and checks to see if they already exist
+    """
+    existing_wordlists = set()
+    try:
+        for item in os.listdir(path):
+            full_path = os.path.join(path, item)
+            if os.path.isdir(full_path):
+                existing_wordlists.add(item.lower())
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+    except PermissionError:
+        print(f"{RED}Permission denied to access {path}.{RESET}")
+    return existing_wordlists
+
+
 def lowercase_directories(path=''):
     """
     Iterates through the names of directories in the specified path and changes them to lowercase.
@@ -119,19 +139,23 @@ def main():
                     print(f"{GREEN}Installing {tool} with snap.{RESET}")
                     os.system(f'snap install {tool}')
                 
-                print(f"{GREEN}Installing Wordlists...{RESET}")
-                
                 #Create directory for wordlists
                 os.system("mkdir -p /opt/wordlists")
+                existing_wordlists = check_directories("/opt/wordlists")
 
-                #Clone wordlists from github 
+
+                print(f"{GREEN}Installing Wordlists...{RESET}")
+                
                 for i, git_link in enumerate(git_wordlists):
-                    print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
-                    os.system(f"cd /opt/wordlists; {git_link}")
+                    wordlist_name = raw_wordlists[i].lower()
+                    if wordlist_name in existing_wordlists:
+                        print(f"{TEAL}Skipping {raw_wordlists[i]} (already installed).{RESET}")
+                    else:
+                        print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
+                        os.system(f"cd /opt/wordlists; git clone {git_link}")
 
-                # Rename cloned directories to lowercase
-                lowercase_directories("/opt/wordlists")    
-
+                # Rename directories to lowercase after cloning
+                lowercase_directories("/opt/wordlists")
 
                 print(f"{GREEN}Done!{RESET}")
                 
