@@ -1,53 +1,82 @@
 import os
 
+GREEN = "\033[92m"
+RESET = "\033[0m"
+
 if os.getuid() != 0:
     print("Please use sudo.")
 
 tools = [
     "nmap",
     "aircrack-ng",
-    "metasploit",
     "sqlmap",
     "hydra",
     "hashcat",
     "john the ripper",
-    "netcat",
     "bettercap",
 ]
 
-wordlists = ''
+raw_wordlists = [
+    "seclists",
+    "PayloadsAllTheThings"
+]
+
+git_wordlists = [
+            'git clone https://github.com/danielmiessler/SecLists.git',
+            'git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git',
+             ]
 
 def packages():
-    print("This will install the following packags:")
-    print("""
-        1) Nmap
-        2) Aircrack-ng
-        3) Metasploit
-        4) Sqlmap
-        5) Hydra
-        6) Hashcat
-        7) John the Ripper
-        8) Netcat
-        9) Bettercap
-        10) Seclists
-        11) Payloads all the things
-        """)
-    
+    print("This will install the following packages:")
+    total = 0
 
+    # Print Tools
+    for i, tool in enumerate(tools):
+        print(f"{i}) {tool}")
+        total += 1
+
+    #Print Wordlists
+    for i, wordlist in enumerate(raw_wordlists):
+        print(f"{i+total}) {wordlist}")
     
+    print("")
+    choice = input("Do you want to continue? Y/N: ").lower()
+
+    return choice
 
 def main():
     try:
-        packages()
-        choice = input("Do you want to continue? Y/N: ").lower()
+        decision = packages()
+        loop = True
+        while loop == True:
+            if decision == 'y':
+                print(F"{GREEN}Starting installation...{RESET}")
+                for tool in tools:
+                    print(f"{GREEN}Installing {tool}{RESET}")
+                    os.system(f'apt install {tool} -y')
+                
+                print(f"{GREEN}Installing Wordlists...{RESET}")
+                
+                os.system("mkdir /opt/wordlists")
 
-        while choice != 'y' or choice != 'n':
-            print("Please select a valid character.")
-            packages()
-        
-        print("Starting installation...")
-        for tool in tools:
-            print(f"Installing {tool}")
-            os.system(f'apt install {tool} -y')
+                for wordlist in git_wordlists:
+                    print(f"{GREEN}Installing {raw_wordlists[wordlist]} at /opt/wordlists{RESET}")
+                    os.system(f"cd /opt/wordlists; {wordlist}")
+                
+                print("Done!")
+                loop = False
+
+
+            elif decision == 'n':
+                print("Exitting...")
+                os.system("exit")
+                loop = False
+            else:
+                print("Please enter a valid character.")
+                decision = packages()
+                loop = True
     except:
         pass
+
+if __name__ == main():
+    main()
