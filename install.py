@@ -28,9 +28,6 @@ tools = [
     "john",
     "bettercap",
     "ffuf",
-    "feroxbuster",
-    "dirb",
-    "dirbuster",
 ]
 
 raw_wordlists = [
