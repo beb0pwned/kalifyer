@@ -23,7 +23,7 @@ tools = [
     "aircrack-ng",
     "sqlmap",
     "hydra",
-    "medusa"
+    "medusa",
     "hashcat",
     "john",
     "bettercap",
