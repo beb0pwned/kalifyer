@@ -76,7 +76,7 @@ def packages():
     
     for i, tool in enumerate(web_downloads):
         print(f"{i + 1 + tool_total}) {tool[0]}")
-        tool_totla += 1
+        tool_total += 1
 
 
     print(f"\n{BOLD_GREEN}Wordlists:{RESET}\n")
