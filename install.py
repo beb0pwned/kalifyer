@@ -19,12 +19,18 @@ banner = """
 # Tools and wordlists to be installed
 tools = [
     "nmap",
+    "curl",
     "aircrack-ng",
     "sqlmap",
     "hydra",
+    "medusa"
     "hashcat",
     "john",
     "bettercap",
+    "ffuf",
+    "feroxbuster"
+    "dirb"
+    "dirbuster"
 ]
 
 raw_wordlists = [
