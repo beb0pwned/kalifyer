@@ -3,6 +3,7 @@ import os
 # Define colors for output
 GREEN = "\033[92m"
 RED = "\033[91m"
+TEAL = "\033[96m"
 RESET = "\033[0m"
 
 # Check if the script is being run with sudo/root privileges
@@ -68,7 +69,7 @@ def lowercase_directories(path=''):
                 if item != new_name:
                     new_full_path = os.path.join(path, new_name)
                     os.rename(full_path, new_full_path)
-                    print(f"Rename: {item} -> {new_name}")
+                    print(f"{TEAL}Rename: {item} -> {new_name}{RESET}")
     
     except Exception as e:
         print(f"Error: {e}")
@@ -100,11 +101,11 @@ def main():
             print(f"{GREEN}Done!{RESET}")
             
         elif decision == 'n':
-            print("Exitting...")
+            print(f"{RED}Exitting...{RESET}")
             os.system("exit")
             
         else:
-            print("Invalid. Please enter 'Y' or 'N'.")
+            print("{RED}Invalid. Please enter 'Y' or 'N'.{RESET}")
             decision = packages()
             main()
 
