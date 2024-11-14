@@ -41,7 +41,8 @@ tools = [
     'traceroute',
     'openvpn',
     'proxychains4',
-    
+    'zsh',
+
 ]
 
 snap_tools = [
