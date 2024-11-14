@@ -41,6 +41,7 @@ snap_tools = [
     'searchsploit',
 ]
 
+#0 = package name; 1=download link; 2=new file name
 web_downloads = [
     ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'burpsuite_community.sh'],
 ]
@@ -170,6 +171,7 @@ def download_web_tools():
     # Download and install apps from the web
     os.makedirs('web_downloads', exist_ok=True)
     
+    print(f"{BOLD_GREEN}Downloading tools from the web...{RESET}")
     for tool in web_downloads:
         tool_name = tool[0]
         download_url = tool[1]
