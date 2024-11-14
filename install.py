@@ -6,6 +6,8 @@ GREEN = "\033[92m"
 RED = "\033[91m"
 TEAL = "\033[96m"
 MAGENTA = "\033[95m"
+ORANGE = "\033[93m"
+BOLD_ORANGE = "\033[1;93m"
 RESET = "\033[0m"
 BOLD_GREEN = "\033[1;92m"
 BOLD_RED = "\033[1;91m"
@@ -207,7 +209,7 @@ def main():
                 install_tools()
                 install_wordlists()
                 download_web_tools()
-                print(f"\n{GREEN}Installation completed successfully!{RESET}")
+                print(f"\n{BOLD_ORANGE}Installation completed successfully!{RESET}")
                 
             elif decision == 'n':
                 print(f"{RED}Exitting...{RESET}")
