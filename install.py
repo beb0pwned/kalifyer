@@ -63,16 +63,18 @@ def packages():
     print("This will install the following packages:\n")
     tool_total = 0
 
-    print(f"{BOLD_GREEN}Tools:{RESET}\n")
     # Print Tools
+    print(f"{BOLD_GREEN}Tools:{RESET}\n")
     for i, tool in enumerate(tools):
         print(f"{i+1}) {tool}")
         tool_total += 1
+
     # Print tools that need to be downloaded with snap
     for i, tool in enumerate(snap_tools):
         print(f"{i+1+tool_total}) {tool}")
         tool_total += 1
-    
+
+    # Tools that need to be downloaded from the web
     for i, tool in enumerate(web_downloads):
         print(f"{i + 1 + tool_total}) {tool[0]}")
         tool_total += 1
@@ -87,25 +89,24 @@ def packages():
 
     return choice
 
-
-def check_directories(path='/opt/wordlists'):
+def check_directories(path=''):
     """
     Iterates through the names of directories in the specified path and checks to see if they already exist
     """
-    existing_wordlists = set()
+    existing_dir = set()
     try:
         for item in os.listdir(path):
             full_path = os.path.join(path, item)
             if os.path.isdir(full_path):
-                existing_wordlists.add(item.lower())
+                existing_dir.add(item.lower())
 
     except Exception as e:
         print(f"Error: {e}")
 
     except PermissionError:
         print(f"{RED}Permission denied to access {path}.{RESET}")
-    return existing_wordlists
 
+    return existing_dir
 
 def lowercase_directories(path=''):
     """
@@ -157,7 +158,9 @@ def main():
                 
                 # Download and install apps from the web
                 os.system(f'mkdir -p web_downloads')
+                existing_dir = check_directories(f'web_downloads/')
                 for tool in web_downloads:
+                    
                     print(f"{GREEN}Installing {tool[0]}...{RESET}")
                     os.system(f'wget -O web_downloads/{tool[2]} {tool[1]}')
                    
@@ -176,7 +179,7 @@ def main():
 
                     else:
                         print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
-                        os.system(f"cd /opt/wordlists; git clone {git_link}")
+                        os.system(f"cd /opt/wordlists; {git_link}")
 
                 # Rename directories to lowercase after cloning
                 lowercase_directories("/opt/wordlists")
