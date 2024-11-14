@@ -171,7 +171,7 @@ def download_web_tools():
     # Download and install apps from the web
     os.makedirs('web_downloads', exist_ok=True)
     
-    print(f"{BOLD_GREEN}Downloading tools from the web...{RESET}")
+    print(f"\n{BOLD_GREEN}Downloading tools from the web...{RESET}\n")
     for tool in web_downloads:
         tool_name = tool[0]
         download_url = tool[1]
