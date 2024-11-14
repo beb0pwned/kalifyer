@@ -55,7 +55,7 @@ git_wordlists = [
             'git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git',
              ]
 
-def packages():
+def display_packages():
     """
     Displays the list of tools and wordlists to be installed
     returns a string
@@ -130,6 +130,61 @@ def lowercase_directories(path=''):
     except Exception as e:
         print(f"Error: {e}")
 
+def install_tools():
+    # Update + Upgrade first
+    print(f"{GREEN}Updating and Upgrading...{RESET}\n")
+    os.system("apt update -y && apt upgrade -y && apt full-upgrade -y")
+
+    #Install tools
+    print(f"{GREEN}Starting installation...\n{RESET}")
+    for tool in tools:
+        print(f"{GREEN}Installing {tool}{RESET}")
+        os.system(f'apt install {tool}')
+
+    # Install snap tools
+    for tool in snap_tools:
+        print(f"{GREEN}Installing {tool} with snap.{RESET}")
+        os.system(f'snap install {tool}')
+
+def install_wordlists():
+    #Create directory for wordlists and check for existing wordlists
+    os.makedirs("/opt/wordlists", exist_ok=True)
+    existing_wordlists = check_directories("/opt/wordlists")
+
+    print(f"{GREEN}Installing Wordlists...{RESET}\n")
+    
+    for i, git_link in enumerate(git_wordlists):
+        wordlist_name = raw_wordlists[i].lower()
+
+        if wordlist_name in existing_wordlists:
+            print(f"{TEAL}Skipping {raw_wordlists[i]} (already installed).{RESET}")
+
+        else:
+            print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
+            os.system(f"cd /opt/wordlists; {git_link}")
+
+    # Rename directories to lowercase after cloning
+    lowercase_directories("/opt/wordlists")
+
+def download_web_tools():
+    # Download and install apps from the web
+    os.makedirs('web_downloads', exist_ok=True)
+    
+    for tool in web_downloads:
+        tool_name = tool[0]
+        download_url = tool[1]
+        filename = tool[2]
+        file_path= f'web_downloads/{filename}'
+
+        if os.path.exists(file_path):
+            print(f"{tool_name} already exists. Skipping download.")
+        else:    
+            print(f"{GREEN}Installing {tool_name}...{RESET}")
+            os.system(f'wget -O {file_path} {download_url}')
+            print(f"{tool_name} downloaded successfully.")
+                        
+            
+
 def main():
     try:
         # Check if the script is being run with sudo/root privileges
@@ -137,54 +192,12 @@ def main():
             print(f"{BOLD_RED}Please use sudo.{RESET}")
         else:
             print(banner)
-            decision = packages()
+            decision = display_packages()
             if decision == 'y':
-                # Update + Upgrade first
-                print(f"{GREEN}Updating and Upgrading...{RESET}\n")
-                os.system("apt update -y && apt upgrade -y")
-                os.system("apt full-upgrade -y")
-
-                print(f"{GREEN}Starting installation...\n{RESET}")
-
-                #Install tools
-                for tool in tools:
-                    print(f"{GREEN}Installing {tool}{RESET}")
-                    os.system(f'apt install {tool}')
-
-                # Install snap tools
-                for tool in snap_tools:
-                    print(f"{GREEN}Installing {tool} with snap.{RESET}")
-                    os.system(f'snap install {tool}')
-                
-                # Download and install apps from the web
-                os.system(f'mkdir -p web_downloads')
-                existing_dir = check_directories(f'web_downloads/')
-                for tool in web_downloads:
-                    
-                    print(f"{GREEN}Installing {tool[0]}...{RESET}")
-                    os.system(f'wget -O web_downloads/{tool[2]} {tool[1]}')
-                   
-                #Create directory for wordlists and check for existing wordlists
-                os.system("mkdir -p /opt/wordlists")
-                existing_wordlists = check_directories("/opt/wordlists")
-
-
-                print(f"{GREEN}Installing Wordlists...{RESET}\n")
-                
-                for i, git_link in enumerate(git_wordlists):
-                    wordlist_name = raw_wordlists[i].lower()
-
-                    if wordlist_name in existing_wordlists:
-                        print(f"{TEAL}Skipping {raw_wordlists[i]} (already installed).{RESET}")
-
-                    else:
-                        print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
-                        os.system(f"cd /opt/wordlists; {git_link}")
-
-                # Rename directories to lowercase after cloning
-                lowercase_directories("/opt/wordlists")
-
-                print(f"\n{GREEN}Done!{RESET}")
+                install_tools()
+                install_wordlists()
+                download_web_tools()
+                print(f"\n{GREEN}Installation completed successfully!{RESET}")
                 
             elif decision == 'n':
                 print(f"{RED}Exitting...{RESET}")
@@ -199,7 +212,6 @@ def main():
     
     except Exception as e:
         print(f"{RED}An error occurred: {e}{RESET}")
-
 
 
 if __name__ == "__main__":
