@@ -1,6 +1,6 @@
 import os
 
-# Define colors for output
+# COLORS
 GREEN = "\033[92m"
 RED = "\033[91m"
 TEAL = "\033[96m"
@@ -45,8 +45,6 @@ web_downloads = [
     ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'burpsuite_community.sh']
 ]
 
-
-
 raw_wordlists = [
     "SecLists",
     "PayloadsAllTheThings"
@@ -59,7 +57,7 @@ git_wordlists = [
 
 def packages():
     """
-    Displays the list of tools and wordlists to be installed and asks for user confirmation.
+    Displays the list of tools and wordlists to be installed
     """
     print("This will install the following packages:\n")
     tool_total = 0
@@ -163,8 +161,6 @@ def main():
                     print(f"{GREEN}Installing {tool[0]}...{RESET}")
                     os.system(f'wget -O web_downloads/{tool[2]} "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux"')
                    
-
-
                 #Create directory for wordlists and check for existing wordlists
                 os.system("mkdir -p /opt/wordlists")
                 existing_wordlists = check_directories("/opt/wordlists")
