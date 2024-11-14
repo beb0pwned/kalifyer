@@ -132,11 +132,11 @@ def lowercase_directories(path=''):
 
 def install_tools():
     # Update + Upgrade first
-    print(f"{GREEN}Updating and Upgrading...{RESET}\n")
+    print(f"\n{BOLD_GREEN}Updating and Upgrading...{RESET}\n")
     os.system("apt update -y && apt upgrade -y && apt full-upgrade -y")
 
     #Install tools
-    print(f"{GREEN}Starting installation...\n{RESET}")
+    print(f"\n{BOLD_GREEN}Starting installation...\n{RESET}")
     for tool in tools:
         print(f"{GREEN}Installing {tool}{RESET}")
         os.system(f'apt install {tool}')
@@ -151,7 +151,7 @@ def install_wordlists():
     os.makedirs("/opt/wordlists", exist_ok=True)
     existing_wordlists = check_directories("/opt/wordlists")
 
-    print(f"{GREEN}Installing Wordlists...{RESET}\n")
+    print(f"\n{BOLD_GREEN}Installing Wordlists...{RESET}\n")
     
     for i, git_link in enumerate(git_wordlists):
         wordlist_name = raw_wordlists[i].lower()
@@ -177,11 +177,11 @@ def download_web_tools():
         file_path= f'web_downloads/{filename}'
 
         if os.path.exists(file_path):
-            print(f"{tool_name} already exists. Skipping download.")
+            print(f"{TEAL}{tool_name} already exists. Skipping download.{RESET}")
         else:    
-            print(f"{GREEN}Installing {tool_name}...{RESET}")
+            print(f"{BOLD_GREEN}Installing {tool_name}...{RESET}")
             os.system(f'wget -O {file_path} {download_url}')
-            print(f"{tool_name} downloaded successfully.")
+            print(f"\n{GREEN}{tool_name} downloaded successfully.{RESET}")
                         
             
 
