@@ -37,6 +37,11 @@ tools = [
     "nikto",
     "dnsenum",
     "sublist3r",
+    'whois',
+    'traceroute',
+    'openvpn',
+    'proxychains4',
+    
 ]
 
 snap_tools = [
@@ -44,6 +49,7 @@ snap_tools = [
     'feroxbuster',
     'searchsploit',
     'amass',
+    'httpx',
 ]
 
 #0 = package name; 1=download link; 2=new file name
@@ -145,7 +151,7 @@ def install_tools():
     print(f"\n{BOLD_GREEN}Starting installation...\n{RESET}")
     for tool in tools:
         print(f"{GREEN}Installing {tool}{RESET}")
-        os.system(f'apt install {tool}')
+        os.system(f'apt install {tool} -y')
 
     # Install snap tools
     for tool in snap_tools:
