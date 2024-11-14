@@ -182,7 +182,7 @@ def download_web_tools():
         if os.path.exists(file_path):
             print(f"{TEAL}{tool_name} already exists. Skipping download.{RESET}")
         else:    
-            print(f"{BOLD_GREEN}Installing {tool_name}...{RESET}")
+            print(f"{GREEN}Installing {tool_name}...{RESET}")
 
             result = subprocess.run(
                 ['wget', '-O', file_path, download_url],
