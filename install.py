@@ -36,8 +36,8 @@ tools = [
     "dirb",
     "nikto",
     "dnsenum",
-    "sublist3er"
-    "amass"
+    "sublist3er",
+    "amass",
 ]
 
 snap_tools = [
