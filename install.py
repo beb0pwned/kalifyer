@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 # COLORS
 GREEN = "\033[92m"
@@ -182,9 +183,16 @@ def download_web_tools():
             print(f"{TEAL}{tool_name} already exists. Skipping download.{RESET}")
         else:    
             print(f"{BOLD_GREEN}Installing {tool_name}...{RESET}")
-            os.system(f'wget -O {file_path} {download_url}')
-            print(f"\n{GREEN}{tool_name} downloaded successfully.{RESET}")
-                        
+
+            result = subprocess.run(
+                ['wget', '-O', file_path, download_url]
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                print(f"\n{GREEN}{tool_name} downloaded successfully.{RESET}")
+            else:
+                print(f"{BOLD_RED}Failed to download {tool_name}: {result.stderr}{RESET}")            
             
 
 def main():
