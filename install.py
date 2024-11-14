@@ -185,7 +185,7 @@ def download_web_tools():
             print(f"{BOLD_GREEN}Installing {tool_name}...{RESET}")
 
             result = subprocess.run(
-                ['wget', '-O', file_path, download_url]
+                ['wget', '-O', file_path, download_url],
                 capture_output=True,
                 text=True
             )
