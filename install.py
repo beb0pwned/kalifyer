@@ -42,7 +42,7 @@ snap_tools = [
 ]
 
 web_downloads = [
-    ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'burpsuite_community.sh']
+    ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'burpsuite_community.sh'],
 ]
 
 raw_wordlists = [
@@ -58,6 +58,7 @@ git_wordlists = [
 def packages():
     """
     Displays the list of tools and wordlists to be installed
+    returns a string
     """
     print("This will install the following packages:\n")
     tool_total = 0
@@ -76,9 +77,8 @@ def packages():
         print(f"{i + 1 + tool_total}) {tool[0]}")
         tool_total += 1
 
-
+    # Print Wordlists
     print(f"\n{BOLD_GREEN}Wordlists:{RESET}\n")
-    #Print Wordlists
     for i, wordlist in enumerate(raw_wordlists):
         print(f"{i+1}) {wordlist}")
     
