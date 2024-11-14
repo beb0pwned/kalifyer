@@ -36,14 +36,14 @@ tools = [
     "dirb",
     "nikto",
     "dnsenum",
-    "sublist3er",
-    "amass",
+    "sublist3r",
 ]
 
 snap_tools = [
     'metasploit-framework',
     'feroxbuster',
     'searchsploit',
+    'amass',
 ]
 
 #0 = package name; 1=download link; 2=new file name
