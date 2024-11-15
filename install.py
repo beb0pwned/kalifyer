@@ -53,7 +53,6 @@ snap_tools = [
     'feroxbuster',
     'searchsploit',
     'amass',
-    'httpx',
 ]
 
 prerequisites = [
