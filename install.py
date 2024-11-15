@@ -67,22 +67,19 @@ go_tools = [
     ['naabu', 'github.com/projectdiscovery/naabu/v2/cmd/naabu@latest']
 ]
 
-
-git_tools = []
-
 #0 = package name; 1=download link; 2=new file name
 web_downloads = [
     ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'burpsuite_community.sh'],
 ]
 
 raw_wordlists = [
-    "SecLists",
+    
     "PayloadsAllTheThings"
 ]
 
 git_wordlists = [
-            'git clone https://github.com/danielmiessler/SecLists.git',
-            'git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git',
+            ['SecLists', 'git clone https://github.com/danielmiessler/SecLists.git'],
+            ['PayloadsAllTheThings','git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git'],
              ]
 
 def display_packages():
@@ -103,7 +100,8 @@ def display_packages():
     for i, tool in enumerate(snap_tools):
         print(f"{i + 1 + tool_total}) {tool}")
         tool_total += 1
-    
+
+    # Tools that need to be downloaded using go
     for i, tool in enumerate(go_tools):
         print(f"{i + 1 + tool_total}) {tool[0]}")
         tool_total += 1
@@ -116,7 +114,7 @@ def display_packages():
     # Print Wordlists
     print(f"\n{BOLD_GREEN}Wordlists:{RESET}\n")
     for i, wordlist in enumerate(raw_wordlists):
-        print(f"{i+1}) {wordlist}")
+        print(f"{i+1}) {wordlist[0]}")
     
     print("")
     choice = input("Do you want to continue? Y/N: ").lower()
@@ -195,15 +193,16 @@ def install_wordlists():
 
     print(f"\n{BOLD_GREEN}Installing Wordlists...{RESET}\n")
     
-    for i, git_link in enumerate(git_wordlists):
-        wordlist_name = raw_wordlists[i].lower()
+    for wordlist in git_wordlists:
+        wordlist_name = wordlist[0].lower()
+        download_url = wordlist[1]
 
         if wordlist_name in existing_wordlists:
-            print(f"{TEAL}Skipping {raw_wordlists[i]} (already installed).{RESET}")
+            print(f"{TEAL}Skipping {wordlist_name} (already installed).{RESET}")
 
         else:
-            print(f"{GREEN}Installing {raw_wordlists[i]} at /opt/wordlists{RESET}")
-            os.system(f"cd /opt/wordlists; {git_link}")
+            print(f"{GREEN}Installing {wordlist_name} at /opt/wordlists{RESET}")
+            os.system(f"cd /opt/wordlists; {download_url}")
 
     # Rename directories to lowercase after cloning
     lowercase_directories("/opt/wordlists")
