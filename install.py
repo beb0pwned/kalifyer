@@ -191,7 +191,7 @@ def install_wordlists():
         wordlist_name = wordlist[0]
         download_url = wordlist[1]
 
-        if wordlist_name in existing_wordlists:
+        if wordlist_name.lower() in existing_wordlists:
             print(f"{TEAL}Skipping {wordlist_name} (already installed).{RESET}")
 
         else:
