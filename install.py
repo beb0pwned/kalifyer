@@ -207,7 +207,7 @@ def install_wordlists():
 
 def go_install_tools():
     # Download tools that need Go to download
-    print(f"\n{BOLD_GREEN}Download tools using go...{RESET}\n")
+    print(f"\n{BOLD_GREEN}Installing tools using go...{RESET}\n")
     for tool in go_tools:
         tool_name = tool[0]
         download_url  = tool[1]
