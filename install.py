@@ -251,6 +251,7 @@ def main():
             decision = display_packages()
             if decision == 'y':
                 install_tools()
+                go_install_tools()
                 install_wordlists()
                 download_web_tools()
                 print(f"\n{BOLD_ORANGE}Installation completed successfully!{RESET}")
