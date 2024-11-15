@@ -203,7 +203,7 @@ def go_install_tools():
         download_url  = tool[1]
 
         result = subprocess.run(
-            ['go', 'install', '-v', download_url]
+            ['go', 'install', '-v', download_url],
             capture_output=True,
             text=True
         )
