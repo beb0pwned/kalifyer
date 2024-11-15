@@ -1,3 +1,5 @@
+# TODO: Install go, and add support for assetfinder, subjack, waybackurls
+
 import os
 import subprocess
 
@@ -42,6 +44,7 @@ tools = [
     'openvpn',
     'proxychains4',
     'zsh',
+    'golang-go',
 
 ]
 
@@ -52,6 +55,18 @@ snap_tools = [
     'amass',
     'httpx',
 ]
+
+
+go_tools = [
+    ['httpx','github.com/projectdiscovery/httpx/cmd/httpx@latest'],
+    ['subfinder','github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest'],
+    ['cvemap','github.com/projectdiscovery/cvemap/cmd/cvemap@latest'],
+    ['katana','github.com/projectdiscovery/katana/cmd/katana@latest'],
+    ['naabu', 'github.com/projectdiscovery/naabu/v2/cmd/naabu@latest']
+]
+
+
+git_tools = []
 
 #0 = package name; 1=download link; 2=new file name
 web_downloads = [
@@ -178,6 +193,26 @@ def install_wordlists():
 
     # Rename directories to lowercase after cloning
     lowercase_directories("/opt/wordlists")
+
+
+def go_install_tools():
+    # Download tools that need Go to download
+    print(f"\n{BOLD_GREEN}Download tools using go...{RESET}\n")
+    for tool in go_tools:
+        tool_name = tool[0]
+        download_url  = tool[1]
+
+        result = subprocess.run(
+            ['go', 'install', '-v', download_url]
+            capture_output=True,
+            text=True
+        )
+
+        if result.returncode == 0:
+            print(f'\n{GREEN}{tool_name} downloaded successfully.{RESET}')
+        else:
+            print(f'\n{BOLD_RED}Failed to download {tool_name}: {result.stderr}{RESET}')
+
 
 def download_web_tools():
     # Download and install apps from the web
