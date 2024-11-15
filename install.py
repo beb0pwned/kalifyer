@@ -220,9 +220,9 @@ def go_install_tools():
         )
 
         if result.returncode == 0:
-            print(f'\n{GREEN}{tool_name} downloaded successfully.{RESET}')
+            print(f'{GREEN}{tool_name} downloaded successfully.{RESET}\n')
         else:
-            print(f'\n{BOLD_RED}Failed to download {tool_name}: {result.stderr}{RESET}')
+            print(f'{BOLD_RED}Failed to download {tool_name}: {result.stderr}{RESET}\n')
 
 
 def download_web_tools():
