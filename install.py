@@ -96,16 +96,16 @@ def display_packages():
     # Print Tools
     print(f"{BOLD_GREEN}Tools:{RESET}\n")
     for i, tool in enumerate(tools):
-        print(f"{i+1}) {tool}")
+        print(f"{i + 1}) {tool}")
         tool_total += 1
 
     # Print tools that need to be downloaded with snap
     for i, tool in enumerate(snap_tools):
-        print(f"{i+1+tool_total}) {tool}")
+        print(f"{i + 1 + tool_total}) {tool}")
         tool_total += 1
     
     for i, tool in enumerate(go_tools):
-        print(f"{i+1+tool_total}) {tool}")
+        print(f"{i + 1 + tool_total}) {tool[0]}")
         tool_total += 1
 
     # Tools that need to be downloaded from the web
