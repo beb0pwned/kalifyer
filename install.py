@@ -1,4 +1,4 @@
-# TODO: Install go, and add support for assetfinder, subjack, waybackurls
+# TODO:
 
 import os
 import subprocess
