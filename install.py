@@ -72,11 +72,6 @@ web_downloads = [
     ["Burp Suite (CE)", "https://portswigger.net/burp/releases/startdownload?product=community&version=2024.9.5&type=Linux", 'burpsuite_community.sh'],
 ]
 
-raw_wordlists = [
-    
-    "PayloadsAllTheThings"
-]
-
 git_wordlists = [
             ['SecLists', 'git clone https://github.com/danielmiessler/SecLists.git'],
             ['PayloadsAllTheThings','git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git'],
@@ -113,8 +108,9 @@ def display_packages():
 
     # Print Wordlists
     print(f"\n{BOLD_GREEN}Wordlists:{RESET}\n")
-    for i, wordlist in enumerate(raw_wordlists):
-        print(f"{i+1}) {wordlist[0]}")
+    for wordlist in git_wordlists:
+        wordlist_name = wordlist[0]
+        print(f"{i + 1}) {wordlist_name}")
     
     print("")
     choice = input("Do you want to continue? Y/N: ").lower()
