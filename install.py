@@ -162,7 +162,7 @@ def lowercase_directories(path=''):
 
 def install_prerequisites():
     # Install prerequisites for some tools
-    print(f'\n{GREEN}Installing prerequisites...{RESET}\n')
+    print(f'\n{BOLD_GREEN}Installing prerequisites...{RESET}\n')
     for prereq in prerequisites:
         print(f'{GREEN}Installing {prereq}...{RESET}')
         os.system(f'apt install {prereq} -y')
@@ -212,8 +212,7 @@ def go_install_tools():
         tool_name = tool[0]
         download_url  = tool[1]
 
-        print(f'')
-
+        print(f'{MAGENTA}Installing {tool_name}...{RESET}')
         result = subprocess.run(
             ['go', 'install', '-v', download_url],
             capture_output=True,
