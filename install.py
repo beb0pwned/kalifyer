@@ -19,10 +19,10 @@ banner = f"""{RED}
 | / / ___ | |<_>| | '_ _  ___  _ _ 
 |  \\ <_> || || || |-| | |/ ._>| '_>
 |_\\_\\<___||_||_||_| `_. |\\___.|_|  
-                    <___'            V1.0{RESET}
-            {TEAL}by beb0pwned{RESET}
-                --> 33 Tools
-                --> 2 Wordlists {RESET}
+                    <___'          V1.0{RESET}
+    {TEAL}by beb0pwned{RESET}
+    {MAGENTA}--> 33 Tools{RESET}
+    {MAGENTA}--> 2 Wordlists {RESET}
 """
 
 # Tools and wordlists to be installed
