@@ -64,7 +64,10 @@ go_tools = [
     ['subfinder','github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest'],
     ['cvemap','github.com/projectdiscovery/cvemap/cmd/cvemap@latest'],
     ['katana','github.com/projectdiscovery/katana/cmd/katana@latest'],
-    ['naabu', 'github.com/projectdiscovery/naabu/v2/cmd/naabu@latest']
+    ['naabu', 'github.com/projectdiscovery/naabu/v2/cmd/naabu@latest'],
+    ['assetfinder', 'github.com/tomnomnom/assetfinder@latest'],
+    ['subjack', 'github.com/haccer/subjack@latest'],
+    ['waybackurls', 'github.com/tomnomnom/waybackurls@latest']
 ]
 
 #0 = package name; 1=download link; 2=new file name
