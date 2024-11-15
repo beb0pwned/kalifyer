@@ -103,6 +103,10 @@ def display_packages():
     for i, tool in enumerate(snap_tools):
         print(f"{i+1+tool_total}) {tool}")
         tool_total += 1
+    
+    for i, tool in enumerate(go_tools):
+        print(f"{i+1+tool_total}) {tool}")
+        tool_total += 1
 
     # Tools that need to be downloaded from the web
     for i, tool in enumerate(web_downloads):
