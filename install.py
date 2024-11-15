@@ -56,6 +56,9 @@ snap_tools = [
     'httpx',
 ]
 
+prerequisites = [
+    'libpcap-dev'
+]
 
 go_tools = [
     ['httpx','github.com/projectdiscovery/httpx/cmd/httpx@latest'],
@@ -158,6 +161,14 @@ def lowercase_directories(path=''):
     except Exception as e:
         print(f"Error: {e}")
 
+def install_prerequisites():
+    # Install prerequisites for some tools
+    print(f'\n{GREEN}Installing prerequisites...{RESET}\n')
+    for prereq in prerequisites:
+        print(f'{GREEN}Installing {prereq}...{RESET}')
+        os.system(f'apt install {prereq} -y')
+        
+
 def install_tools():
     # Update + Upgrade first
     print(f"\n{BOLD_GREEN}Updating and Upgrading...{RESET}\n")
@@ -201,6 +212,8 @@ def go_install_tools():
     for tool in go_tools:
         tool_name = tool[0]
         download_url  = tool[1]
+
+        print(f'')
 
         result = subprocess.run(
             ['go', 'install', '-v', download_url],
@@ -250,6 +263,7 @@ def main():
             print(banner)
             decision = display_packages()
             if decision == 'y':
+                install_prerequisites()
                 install_tools()
                 go_install_tools()
                 install_wordlists()
