@@ -158,18 +158,16 @@ def lowercase_directories(path=''):
     except Exception as e:
         print(f"Error: {e}")
 
-def install_prerequisites():
-    # Install prerequisites for some tools
-    print(f'\n{BOLD_GREEN}Installing prerequisites...{RESET}\n')
-    for prereq in prerequisites:
-        print(f'{GREEN}Installing {prereq}...{RESET}')
-        os.system(f'apt install {prereq} -y')
-        
-
 def install_tools():
     # Update + Upgrade first
     print(f"\n{BOLD_GREEN}Updating and Upgrading...{RESET}\n")
     os.system("apt update -y && apt upgrade -y && apt full-upgrade -y")
+
+    # Install Prerequisites
+    print(f'\n{BOLD_GREEN}Installing prerequisites...{RESET}\n')
+    for prereq in prerequisites:
+        print(f'{GREEN}Installing {prereq}...{RESET}')
+        os.system(f'apt install {prereq} -y')
 
     #Install tools
     print(f"\n{BOLD_GREEN}Starting installation...\n{RESET}")
@@ -260,7 +258,6 @@ def main():
             print(banner)
             decision = display_packages()
             if decision == 'y':
-                install_prerequisites()
                 install_tools()
                 go_install_tools()
                 install_wordlists()
