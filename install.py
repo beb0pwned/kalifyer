@@ -188,7 +188,7 @@ def install_wordlists():
     print(f"\n{BOLD_GREEN}Installing Wordlists...{RESET}\n")
     
     for wordlist in git_wordlists:
-        wordlist_name = wordlist[0].lower()
+        wordlist_name = wordlist[0]
         download_url = wordlist[1]
 
         if wordlist_name in existing_wordlists:
