@@ -1,4 +1,4 @@
-# TODO:
+# TODO: Add more wordlists
 
 import os
 import subprocess
@@ -21,7 +21,7 @@ banner = f"""{RED}
 |_\\_\\<___||_||_||_| `_. |\\___.|_|  
                     <___'          V1.0{RESET}
     {TEAL}by beb0pwned{RESET}
-    {MAGENTA}--> 33 Tools{RESET}
+    {MAGENTA}--> 35 Tools{RESET}
     {MAGENTA}--> 2 Wordlists {RESET}
 """
 
@@ -47,6 +47,8 @@ tools = [
     'proxychains4',
     'zsh',
     'golang-go',
+    'ruby',
+    'cupp',
 
 ]
 
@@ -58,7 +60,9 @@ snap_tools = [
 ]
 
 prerequisites = [
-    'libpcap-dev'
+    'libpcap-dev',
+    'linux-headers-generic'
+    'kali-defaults'
 ]
 
 go_tools = [
@@ -84,7 +88,7 @@ git_wordlists = [
 
 def display_packages():
     """
-    Displays the list of tools and wordlists to be installed and prompts user if they want to continue after the installation
+    Displays the list of tools and wordlists to be installed and prompts user if they want to continue with the installation
     """
     print("This will install the following packages:\n")
     tool_total = 0
