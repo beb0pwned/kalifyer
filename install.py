@@ -61,8 +61,8 @@ snap_tools = [
 
 prerequisites = [
     'libpcap-dev',
-    'linux-headers-generic'
-    'kali-defaults'
+    'linux-headers-generic',
+    'kali-defaults',
 ]
 
 go_tools = [
