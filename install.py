@@ -91,27 +91,27 @@ def display_packages():
     Displays the list of tools and wordlists to be installed and prompts user if they want to continue with the installation
     """
     print("This will install the following packages:\n")
-    tool_total = 0
+    tool_total = 1
 
     # Print Tools
     print(f"{BOLD_GREEN}Tools:{RESET}\n")
     for i, tool in enumerate(tools):
-        print(f"{i + 1}) {tool}")
+        print(f"{tool_total}) {tool}")
         tool_total += 1
 
     # Print tools that need to be downloaded with snap
     for i, tool in enumerate(snap_tools):
-        print(f"{i + 1 + tool_total}) {tool}")
+        print(f"{tool_total}) {tool}")
         tool_total += 1
 
     # Tools that need to be downloaded using go
     for i, tool in enumerate(go_tools):
-        print(f"{i + 1 + tool_total}) {tool[0]}")
+        print(f"{tool_total}) {tool[0]}")
         tool_total += 1
 
     # Tools that need to be downloaded from the web
     for i, tool in enumerate(web_downloads):
-        print(f"{i + 1 + tool_total}) {tool[0]}")
+        print(f"{tool_total}) {tool[0]}")
         tool_total += 1
 
     # Print Wordlists
