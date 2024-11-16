@@ -84,8 +84,7 @@ git_wordlists = [
 
 def display_packages():
     """
-    Displays the list of tools and wordlists to be installed
-    returns a string
+    Displays the list of tools and wordlists to be installed and prompts user if they want to continue after the installation
     """
     print("This will install the following packages:\n")
     tool_total = 0
