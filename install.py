@@ -1,4 +1,4 @@
-# TODO: Add more wordlists
+# TODO: Add more wordlists, add proper installation of $GOPATH 
 
 import os
 import subprocess
