@@ -49,6 +49,7 @@ tools = [
     'golang-go',
     'ruby',
     'cupp',
+    'snapd',
 
 ]
 
