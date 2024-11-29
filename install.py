@@ -1,4 +1,4 @@
-# TODO: Add more wordlists, add proper installation of zsh
+# TODO: Add more wordlists, add proper installation of zsh, for kali `sudo systemctl enable --now snapd apparmor` is required for snap to install correctly
 
 import os
 import subprocess
@@ -50,6 +50,7 @@ tools = [
     'ruby',
     'cupp',
     'snapd',
+    'mdk3',
 
 ]
 
