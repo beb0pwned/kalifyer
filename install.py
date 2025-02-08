@@ -84,7 +84,6 @@ web_downloads = [
 
 git_wordlists = [
             ['SecLists', 'git clone https://github.com/danielmiessler/SecLists.git'],
-            ['PayloadsAllTheThings','git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git'],
              ]
 
 def display_packages():
