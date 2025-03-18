@@ -11,7 +11,7 @@ This repository is designed to install a comprehensive range of Kali tools on ot
 
 ## Requirements
 - Python 3
-- Ubuntu (Possibly more distros in the future)
+- Debian OS (Possibly more distros in the future)
 
 ## To install Burpsuite:
 1. `cd web_downloads`
