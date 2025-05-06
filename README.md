@@ -2,8 +2,9 @@
 Install Kali tools automatically
 
 ## About
-This repository is designed to install a comprehensive range of Kali tools on other Linux distributions, (Tested only on Ubuntu). I plan to add many more features and tools in the near future. 
-- Note: This script currently supports only Bash and Zsh shells for the automatic installation of Go. If you're using a different shell, you'll need to manually add the Go bin path to your system's paths.
+This repository is designed to install a wide range of Kali Linux tools on **Debian-based distributions only** (e.g., Ubuntu).
+The script has been tested exclusively on Ubuntu, and support for additional distros may come later.
+
 
 ## Usage 
 `cd kalifyer`
